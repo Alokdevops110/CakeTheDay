@@ -15,7 +15,7 @@
 <body>
     <div class="header">Cake The Day - Best Quality Cakes</div>
 
-    <div class="section-title">Best Seller Cakes</div>
+    <div class="section-title">Engagement Cakes</div>
     <div class="image-slider">
         <div class="cakes-container" id="bestSellerCakes"></div>
     </div>
@@ -39,15 +39,20 @@
     </div>
 
     <script>
-        let baseURL = "https://srijantest.s3.ap-south-1.amazonaws.com/srijan_test/masters/help_faq/CakeTheDay/images/";
+        let baseURL = "./"//"https://srijantest.s3.ap-south-1.amazonaws.com/srijan_test/masters/help_faq/CakeTheDay/images/";
         let bestSellerContainer = document.getElementById("bestSellerCakes");
         let customizedContainer = document.getElementById("customizedCakes");
         let imagesList = [];
 
-        function createImages(container, start, count) {
+        function createImages(container, start, count,CategoryName) {
             for (let i = start; i < start + count; i++) {
-                let itemIndex = (i % 10) + 1; // Cycle through images 1 to 10
-                let imageUrl = `${baseURL}${itemIndex}.jpg`;
+
+
+                let itemIndex = "images/Engagement/"+CategoryName +"("+i+")" //(i % 10) + 1; // Cycle through images 1 to 10
+
+                console.log("itemIndex",itemIndex)
+
+                let imageUrl = `${itemIndex}.jpg`;
                 imagesList.push(imageUrl);
                 let imgDiv = document.createElement("div");
                 imgDiv.className = "cake";
@@ -57,8 +62,8 @@
         }
 
         // Generate 20 images for each category
-        createImages(bestSellerContainer, 1, 20);
-        createImages(customizedContainer, 21, 20);
+        createImages(bestSellerContainer, 1, 20,"Engagement");
+        createImages(customizedContainer, 21, 20,"Baby");
 
         let currentIndex = 0;
         function openPopup(imageUrl) {
